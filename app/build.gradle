@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -10,11 +9,12 @@ android {
         versionCode Integer.parseInt(project.VERSION_CODE)
         versionName project.VERSION_NAME
     }
+    namespace 'com.andrognito.patternlockdemo'
 }
 
 dependencies {
-    compile project(':patternlockview')
-    compile project(':patternlockview-reactive')
-    compile rootProject.ext.supportV7
-    compile rootProject.ext.rxJava
+    implementation project(':patternlockview')
+    implementation project(':patternlockview-reactive')
+    implementation rootProject.ext.supportV7
+    implementation rootProject.ext.rxJava
 }
