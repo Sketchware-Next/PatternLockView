@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -13,10 +14,26 @@ android {
     testOptions {
         targetSdk 34
     }
+    publishing {
+        singleVariant("release")
+    }
 }
 
 dependencies {
     implementation project(':patternlockview')
     implementation rootProject.ext.rxJava
     implementation rootProject.ext.rxAndroid
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.Sketchware-Next.PatternLockView'
+                artifactId = 'patternlockview-reactive'
+                version = VERSION_NAME
+            }
+        }
+    }
 }
